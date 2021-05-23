@@ -5,7 +5,7 @@ const SpotifyWebApi = require('spotify-web-api-node');
 const lyricsFinder = require('lyrics-finder');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
-const proxy = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 // const buildPath = path.join(__dirname, 'build');
 
 
@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 // app.use(express.static(buildPath));
-app.use('/api', proxy({target: 'https://spotifywithlyrics.herokuapp.com', changeOrigin: true}));
+app.use('/api', createProxyMiddleware({target: 'http://spotifywithlyrics.cihadcengiz.com', changeOrigin: true}));
 
 
 
