@@ -1,20 +1,17 @@
 require('dotenv').config();
-// const path = require('path');
+const path = require('path');
 const express = require('express');
 const SpotifyWebApi = require('spotify-web-api-node');
 const lyricsFinder = require('lyrics-finder');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
-const { createProxyMiddleware } = require('http-proxy-middleware');
-// const buildPath = path.join(__dirname, 'build');
+const buildPath = path.join(__dirname, 'build');
 
 
 const app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
-// app.use(express.static(buildPath));
-app.use('/api', createProxyMiddleware({target: 'http://spotifywithlyrics.cihadcengiz.com', changeOrigin: true}));
-
+app.use(express.static(buildPath));
 
 
 app.post('/refresh', (req,res) => {
