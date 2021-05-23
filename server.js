@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 // app.use(express.static(buildPath));
-app.use('/', proxy({target: 'https://spotifywithlyrics.herokuapp.com', changeOrigin: true}));
+app.use('/api', proxy({target: 'https://spotifywithlyrics.herokuapp.com', changeOrigin: true}));
 
 
 
